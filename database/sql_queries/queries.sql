@@ -46,6 +46,14 @@ CREATE TABLE IF NOT EXISTS orders (
         CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--Query para crear la tabla intermedia
+CREATE TABLE IF NOT EXISTS orders_products(
+    order_products_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id int NOT NULL,
+    product_id int NOT NULL,
+    cantidad_productos int NOT NULL
+    );
+
 
 INSERT INTO users (usuario, nombre_apellido, email, contrasena, telefono, direccion, is_admin)
 VALUES ('Federico', 'Federico Sanchez', 'federico.com','48325543','Ameghino 12','klaviers',1);
@@ -71,7 +79,7 @@ VALUES ('Sandwich Focaccia', '440', 'url', 'Sandwich de Focaccia');
 
 
 INSERT INTO orders (estado, hora, descripcion, monto, pago, user_id)
-VALUES ('new', '15:34:02', '5xbagel2xhamburguesa','3700','0', 2);
+VALUES ('new', '15:34:02', 'Orden guardada','3700','0', 2);
 
 
 COMMIT;

@@ -63,10 +63,10 @@ router.get('/orders/:id', async(req,res, next) => {
     const token = req.headers.token;
     const id = req.params.id;
     const getOrder = await middlewares.getOrderDetail(id, token);
-    if(getOrder.length > 0)
+    //if(getOrder.length > 0)
         res.status(200).send(getOrder);
-    else
-        res.status(404).send('Orden no encontrada');
+    //else
+    //    res.status(404).send('Orden no encontrada');
     next();
 })
 

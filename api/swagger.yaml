@@ -262,7 +262,7 @@ paths:
       tags:
         - "ordenes"
       summary: "Actualizar el estado de una orden"
-      description: "Cambiar el estado de un pedido"
+      description: "Cambiar el estado de un pedido. Los diferentes estados son: ['new', 'confirmed', 'preparing', 'sending', 'delivered', 'canceled'];"
       operationId: "putOrder"
       consumes:
         - "application/json"
@@ -399,8 +399,16 @@ definitions:
   orden_completa:
     type: "object"
     properties:
-      order_id:
-        type: "number"
+      usuario: 
+        type: "string"
+      direccion:
+        type: "string"
+      mail: 
+        type: "string"
+      telefono: 
+        type: "string"
+      monto_total: 
+        type: "integer"
       estado:
         type: "string"
         enum:
@@ -409,33 +417,10 @@ definitions:
           - "preparing"
           - "delivering"
           - "delivered"
-      hora:
-        type: "string"
-        example: "15:34:02"
-      descripcion:
-        type: "string"
-        example: "1xBagel2xHamburguesa"
-      monto:
-        type: "number"
-      pago:
-        type: "number"
-        description: "pago en efectivo(0) o con tarjeta(1)"
-      user_id:
-        type: "number"
-      usuario:
-        type: "string"
-      nombre_apellido:
-        type: "string"
-      email:
-        type: "string"
-      contrasena:
-        type: "string"
-      telefono:
-        type: "string"
-      direccion:
-        type: "string"
-      is_admin: 
-        type: "number"
+      productos:
+        type: "array"
+        items:
+          $ref: "#/definitions/producto_detalle"
         
   item_seleccionado:
     type: "object"
@@ -533,3 +518,23 @@ definitions:
         type: "number"
       description:
         type: "string"
+  producto_detalle:
+    type: "object"
+    properties: 
+      product_id:
+        type: "integer"
+      product_name: 
+        type: "string"
+      product_price:
+        type: "integer"
+      img_url: 
+        type: "string"
+      description: 
+        type: "string"
+      order_products_id:
+        type: "integer"
+      order_id: 
+        type: "integer"
+      cantidad_productos: 
+        type: "integer"
+      
